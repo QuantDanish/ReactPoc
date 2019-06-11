@@ -14,8 +14,7 @@ const defaultProps = {
 };
 
 let style = {
-  borderBottom: 'none',
-  padding: '0.25rem'
+  borderBottom: 'none'
 }
 
 const ModalHeader = ({header, hideCallback}) => {

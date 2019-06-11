@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalHeader from './ModalHeader';
+import ModalFooter from './ModalFooter';
 
 const propTypes = {
   header: PropTypes.oneOfType([
@@ -25,10 +26,7 @@ const ModalBody = ({header, hideCallback, content, footer}) => {
           <div className="modal-body">
             {content}
           </div>
-          <div className="modal-footer">
-            <div className="flex-fill">{footer}</div>
-            <button type="button" className="btn btn-primary" onClick={hideCallback}>Close</button>
-          </div>
+          <ModalFooter footer={footer} hideCallback={hideCallback}/>
         </>
   );
 }
