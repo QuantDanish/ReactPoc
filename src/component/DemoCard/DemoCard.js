@@ -11,7 +11,7 @@ const defaultProps = {
   children: 'Dummy Child',
   title: 'Title',
   index: 0,
-  minWidth: '48%'
+  minWidth: '100%'
 }
 
 const DemoCard = ({children, index, title, minWidth}) => {

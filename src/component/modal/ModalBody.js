@@ -16,17 +16,31 @@ const propTypes = {
     PropTypes.string,
     PropTypes.element
   ]),
-  hideCallback: PropTypes.func.isRequired
+  hideCallback: PropTypes.func.isRequired,
+  showTopBorder: PropTypes.bool,
+  showCloseButton: PropTypes.bool,
 }
 
-const ModalBody = ({header, hideCallback, content, footer}) => {
+const ModalBody = ({
+  header, 
+  hideCallback, 
+  content, 
+  footer,
+  showCloseButton,
+  showTopBorder
+}) => {
   return (
         <>
           <ModalHeader header={header} hideCallback={hideCallback} />
           <div className="modal-body">
             {content}
           </div>
-          <ModalFooter footer={footer} hideCallback={hideCallback}/>
+          <ModalFooter 
+            footer={footer} 
+            hideCallback={hideCallback}
+            showCloseButton={showCloseButton}
+            showTopBorder={showTopBorder}
+          />
         </>
   );
 }

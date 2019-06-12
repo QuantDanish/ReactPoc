@@ -62,7 +62,6 @@ class Modal extends Component {
   };
   
   closeModal() {
-    console.log("close  modal ::", this.state ,this.props)
     this.setAnimation(false);
     setTimeout(() => {
       this.setShow(false);
@@ -90,7 +89,9 @@ class Modal extends Component {
                                 header={this.props.header} 
                                 footer={this.props.footer} 
                                 content={this.props.content} 
-                                hideCallback={this.props.closeHandler} />;
+                                hideCallback={this.props.closeHandler} 
+                                showCloseButton={this.props.showCloseButton}
+                                showTopBorder={this.props.showTopBorder}/>;
     return (
       <ModalTemplate
         show={this.state.show}

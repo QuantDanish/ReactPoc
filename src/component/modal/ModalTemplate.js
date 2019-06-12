@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes  from 'prop-types'; 
+import * as Utility from './utility';
 
 import './modal.css';
 
@@ -26,17 +27,29 @@ const ModalTemplate = (props) => {
     modalStyle,
   } = props;
 
+  const [marginTop, setMarginTop] = useState(0);
+  
 
   let style= {...backdropStyle};
   style.display = show ? "block" : "none";
   
+
+
   let styleWithoutMargin = getModalStyle(modalStyle);
+  if(startAnimation){
+    styleWithoutMargin.marginTop = marginTop;
+  }
+
   return (
     <>
       <div className={"modal-backdrop " + (show ? 'show': '')} style={style} onClick={hideCallback}></div>
       <div className={"modal " + (show ? 'show': '')} role="dialog" style={style} >
         <div className={"modal-dialog " + className } role="document" >
-          <div className={"modal-content " + (startAnimation ? "aniamtionActive" : "")} style={styleWithoutMargin} >
+          <div 
+            className={"modal-content " + (startAnimation ? "aniamtionActive" : "")} 
+            style={styleWithoutMargin} 
+            onWheel={(e) => Utility.onWheelEventHandler(e, marginTop, setMarginTop)}
+            >
             { body }
           </div>
         </div>     
