@@ -1,22 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Modal
 
-## Available Scripts
+## Demos
+For demos please follow this link [demo](https://quantdanish.github.io/ReactPoc)
 
-In the project directory, you can run:
+## Instructions
+Run following command to install dependency and run on localhost.
+```
+npm install
+npm start
+```
 
-### `npm start`
+## Features
+  1. Styled with bootstrap 4 so suitable for most of web application.
+  2. You may customise modal as per your requirement.
+  3. Easy to use and efficient.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Simple modal
+If you want to just display some message to user.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+<Modal 
+  open={openModal}
+  content="Hey guys !"
+  closeHandler={() => setOpenModal(false)}
+/>
+```
