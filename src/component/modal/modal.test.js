@@ -5,6 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Modal from './Modal';
 
 
+
 configure({adapter: new Adapter()});
 
 /**
@@ -12,68 +13,38 @@ configure({adapter: new Adapter()});
 | Test cases with children nodes.
 |--------------------------------------------------
 */
-describe('Modal with children', () => {
-  it('should redners without crashing', () => {
-    let closeHandler = jest.fn(() => {});
-    let wrapper = shallow(<Modal closeHandler={closeHandler}>Test</Modal>);
-    expect(wrapper).toMatchSnapshot();
-  });
+describe('Modal', () => {
+  const closeHandler = jest.fn(() => {});
 
-  it('should renders its child elements', () => {
-    let closeHandler = jest.fn(() => {});
-    let wrapper = mount(<Modal closeHandler={closeHandler}>Test</Modal>);
-    expect(wrapper.find('.modal-content').text()).toEqual('Test');
-  });
-
-  it('should set default props correctly.', () => {
-    let closeHandler = jest.fn(() => {});
-    let wrapper = mount(<Modal closeHandler={closeHandler}>Test</Modal>);
-    
-    expect(wrapper.props().isOpen).toBe(false);
-    expect(wrapper.props().delay).toBe(200);
-    expect(wrapper.props().className).toEqual('');
-    expect(wrapper.props().backdropStyle).toStrictEqual({});
-    expect(wrapper.props().modalStyle).toStrictEqual({});
-    wrapper.unmount();
+  it('should redners without crashing when child element present.', () => { 
+    const wrapperWithChild = shallow(<Modal closeHandler={closeHandler}>Test</Modal>);
+    expect(wrapperWithChild).toMatchSnapshot();
   });
   
-});
-
-
-/**
-|--------------------------------------------------
-| Test cases without children nodes.
-|--------------------------------------------------
-*/
-
-describe('Modal without children', () => {
-  let callback = jest.fn(() => {});
-  let wrapper = shallow(<Modal closeHandler={callback} />);
-  it('should renders without crashing', () => {
+  it('should renders without crashing when no child present', () => {
+    const wrapper = shallow(<Modal closeHandler={closeHandler} />);
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 
-  it('should set default props correctly', () => {
-    expect(wrapper.props().show).toBe(false);
-    expect(wrapper.props().startAnimation).toBe(false);
-    expect(wrapper.instance()).toBeInstanceOf(Modal);
-    expect(wrapper.instance().props.delay).toEqual(200);
-    expect(wrapper.props().className).toEqual('');
-    expect(wrapper.props().backdropStyle).toStrictEqual({});
-    expect(wrapper.props().modalStyle).toStrictEqual({});
+  it('should not animate', () => {
+    const wrapper = mount(<Modal closeHandler={closeHandler} withAnimation={false} />);
+    const modalContent = wrapper.find('.modal-content');
+    const modalStyle =  modalContent.prop('style');
+    expect(modalStyle.marginTop).toBe('0');
+    wrapper.unmount();
   })
-})
+});
 
 /**
 |--------------------------------------------------
 | Test Life cyclehooks.
 |--------------------------------------------------
 */
-describe('Modal Lifecycle hooks', () => {
+describe('Modal behaviour when opened intially', () => {
   let callback = jest.fn(() => {});
   let wrapper = shallow(<Modal closeHandler={callback} isOpen={true}></Modal>);
 
-  it('should render modal without crashing when modal is opened', () => {  
+  it('should render modal without crashing', () => {  
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -82,10 +53,10 @@ describe('Modal Lifecycle hooks', () => {
     expect(wrapper.state('animation')).toBe(false);
   });
 
-  describe('on start rendering on UI', () => {
+  describe('when starts rendering on UI', () => {
 
 
-    it('should call rendreModal Method', () => {
+    it('should call renderModal Method', () => {
       let spy = jest.spyOn(Modal.prototype, 'renderModal');
       let modal = mount(<Modal closeHandler={callback} isOpen={true}>Test</Modal>);
       expect(spy).toHaveBeenCalled();
@@ -143,4 +114,5 @@ describe('Click Events', () => {
     expect(callback).toHaveBeenCalled();
     modal.unmount();
   });
-})
+
+});

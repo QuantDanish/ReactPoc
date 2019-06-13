@@ -7,6 +7,7 @@ import './modal.css';
 const propTypes = {
   show: PropTypes.bool.isRequired,
   hideCallback: PropTypes.func.isRequired,
+  withAnimation: PropTypes.bool.isRequired,
   startAnimation: PropTypes.bool.isRequired,
   modalStyle: PropTypes.object.isRequired,
   backdropStyle: PropTypes.object.isRequired,
@@ -20,6 +21,7 @@ const ModalTemplate = (props) => {
   const {
     show, 
     hideCallback, 
+    withAnimation,
     startAnimation, 
     className,
     body,
@@ -35,9 +37,9 @@ const ModalTemplate = (props) => {
   
 
 
-  let styleWithoutMargin = getModalStyle(modalStyle);
+  let filteredModalStyle = Utility.getModalStyle(modalStyle, withAnimation);
   if(startAnimation){
-    styleWithoutMargin.marginTop = marginTop;
+    filteredModalStyle.marginTop = marginTop;
   }
 
   return (
@@ -47,7 +49,7 @@ const ModalTemplate = (props) => {
         <div className={"modal-dialog " + className } role="document" >
           <div 
             className={"modal-content " + (startAnimation ? "aniamtionActive" : "")} 
-            style={styleWithoutMargin} 
+            style={filteredModalStyle} 
             onWheel={(e) => Utility.onWheelEventHandler(e, marginTop, setMarginTop)}
             >
             { body }
@@ -56,17 +58,6 @@ const ModalTemplate = (props) => {
       </div>   
     </>
   )
-}
-
-const getModalStyle = style => {
-  let styleWithoutMargin = {};
-  for (const key in style) {
-    if (style.hasOwnProperty(key) && !key.match(/margin/i)) {
-      styleWithoutMargin[key] = style[key];
-      
-    }
-  }
-  return styleWithoutMargin;
 }
 
 ModalTemplate.propTypes = propTypes;

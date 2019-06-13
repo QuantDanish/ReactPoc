@@ -5,7 +5,8 @@ const DemoModal = () => {
   const [open, setOpen] = useState(false);
   const [openLargeModal, setOpenLargeModal] = useState(false);
   const [openBModal, setOpenBModal] = useState(false);
-  const [openFCModal, setOpenFCModal] = useState(false)
+  const [openFCModal, setOpenFCModal] = useState(false);
+  const [openWAanimation, setOpenWAanimation] = useState(false);
   return (
     <div>
       <div className="mb-1 h5">
@@ -35,6 +36,22 @@ const DemoModal = () => {
             show
           </button>
       </div>
+
+      <div className="mb-1 h5">
+        * Open modal without any animation.
+          <button className="btn btn-link" onClick= {() => setOpenWAanimation(true)}>
+            show without animation.
+          </button>
+      </div>
+
+
+      <Modal 
+        isOpen={openWAanimation} 
+        closeHandler={() => setOpenWAanimation(false)} 
+        content={<div className="h5 text-danger">Did you see any animation ?</div>}
+        showCloseButton={false}
+        withAnimation={false}
+      />
 
 
       <Modal 

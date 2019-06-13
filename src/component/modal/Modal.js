@@ -6,6 +6,7 @@ import ModalBody from './ModalBody';
 let propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
+  withAnimation: PropTypes.bool,
   delay: PropTypes.number,
   className: PropTypes.string,
   modalStyle: PropTypes.object,
@@ -26,6 +27,7 @@ let propTypes = {
 
 let defaultProps = {
   isOpen: false,
+  withAnimation: true,
   delay: 200,
   className: "",
   modalStyle: {},
@@ -91,11 +93,14 @@ class Modal extends Component {
                                 content={this.props.content} 
                                 hideCallback={this.props.closeHandler} 
                                 showCloseButton={this.props.showCloseButton}
-                                showTopBorder={this.props.showTopBorder}/>;
+                                showTopBorder={this.props.showTopBorder}
+                                
+                                />;
     return (
       <ModalTemplate
         show={this.state.show}
         hideCallback= {this.props.closeHandler}
+        withAnimation={this.props.withAnimation}
         startAnimation= {this.state.animation}
         body={body}
         className={this.props.className}

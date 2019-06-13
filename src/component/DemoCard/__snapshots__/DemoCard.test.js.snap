@@ -5,7 +5,7 @@ exports[`Demo Component Testing Should renders without crashing 1`] = `
   className="card p-2 m-2"
   style={
     Object {
-      "width": "48%",
+      "width": "100%",
     }
   }
 >

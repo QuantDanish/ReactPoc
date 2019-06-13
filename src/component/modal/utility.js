@@ -81,3 +81,19 @@ export const onWheelEventHandler = (e, marginTop, setMarginTop) => {
 
   return;
 }
+
+export const getModalStyle = (style, withAnimation) => {
+  let modalStyle = {};
+  for (const key in style) {
+    if (style.hasOwnProperty(key) && !key.match(/margin/i)) {
+      modalStyle[key] = style[key];
+      
+    }
+  }
+
+  if(!withAnimation) {
+    modalStyle.marginTop = '0';
+  }
+
+  return modalStyle;
+}

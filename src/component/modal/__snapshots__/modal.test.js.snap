@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Modal Lifecycle hooks should render modal without crashing when modal is opened 1`] = `
+exports[`Modal behaviour when opened intially should render modal without crashing 1`] = `
 <ModalTemplate
   backdropStyle={Object {}}
   body={
@@ -13,10 +13,11 @@ exports[`Modal Lifecycle hooks should render modal without crashing when modal i
   modalStyle={Object {}}
   show={true}
   startAnimation={false}
+  withAnimation={true}
 />
 `;
 
-exports[`Modal with children should redners without crashing 1`] = `
+exports[`Modal should redners without crashing when child element present. 1`] = `
 <ModalTemplate
   backdropStyle={Object {}}
   body="Test"
@@ -25,10 +26,11 @@ exports[`Modal with children should redners without crashing 1`] = `
   modalStyle={Object {}}
   show={false}
   startAnimation={false}
+  withAnimation={true}
 />
 `;
 
-exports[`Modal without children should renders without crashing 1`] = `
+exports[`Modal should renders without crashing when no child present 1`] = `
 <ModalTemplate
   backdropStyle={Object {}}
   body={
@@ -41,5 +43,6 @@ exports[`Modal without children should renders without crashing 1`] = `
   modalStyle={Object {}}
   show={false}
   startAnimation={false}
+  withAnimation={true}
 />
 `;
