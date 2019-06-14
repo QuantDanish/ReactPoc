@@ -19,6 +19,11 @@ npm start
 If you want to just display some message to user.
 
 ```javascript
+/*  
+  here openModal is state variable of parent
+  react component and setOpenModal is a function
+  which change the state of openModal
+*/
 <Modal 
   open={openModal}
   content="Hey guys !"

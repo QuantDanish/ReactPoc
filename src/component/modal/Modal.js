@@ -102,11 +102,12 @@ class Modal extends Component {
         hideCallback= {this.props.closeHandler}
         withAnimation={this.props.withAnimation}
         startAnimation= {this.state.animation}
-        body={body}
         className={this.props.className}
         modalStyle={this.props.modalStyle}
         backdropStyle={this.props.backdropStyle}
-      ></ModalTemplate>
+      >
+        {body}
+      </ModalTemplate>
     )
   }
 

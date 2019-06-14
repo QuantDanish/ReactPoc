@@ -80,7 +80,9 @@ const DemoModal = () => {
       />
 
 
-      <Modal isOpen={openFCModal} closeHandler={() => setOpenFCModal(false)} className="modal-lg">
+      <Modal isOpen={openFCModal} closeHandler={() => setOpenFCModal(false)} className="modal-lg"
+        modalStyle={{wdith: '1000px;'}}
+      >
         <div>
           <div className="p-2 m-5">
             <h1>Lorem Ipsum</h1>

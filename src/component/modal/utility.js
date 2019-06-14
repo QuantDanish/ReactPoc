@@ -1,4 +1,4 @@
-const SCROLL_FACTOR = -10;
+const SCROLL_FACTOR = -20;
 const BOTTOM_MARGIN = 50;
 const getPageHeight = () => {
   return Math.max(
@@ -90,6 +90,10 @@ export const getModalStyle = (style, withAnimation) => {
       
     }
   }
+
+  // add transition property
+  modalStyle['marginTop'] = '-100%';
+  modalStyle['transition'] = 'margin-top 0.5s ease-out';
 
   if(!withAnimation) {
     modalStyle.marginTop = '0';
