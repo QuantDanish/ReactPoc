@@ -5,6 +5,7 @@ import * as Utility from './utility';
 const propTypes = {
   show: PropTypes.bool.isRequired,
   hideCallback: PropTypes.func.isRequired,
+  delay: PropTypes.number.isRequired,
   withAnimation: PropTypes.bool.isRequired,
   startAnimation: PropTypes.bool.isRequired,
   modalStyle: PropTypes.object.isRequired,
@@ -19,6 +20,7 @@ const ModalTemplate = (props) => {
   const {
     show, 
     hideCallback, 
+    delay,
     withAnimation,
     startAnimation, 
     className,
@@ -39,7 +41,8 @@ const ModalTemplate = (props) => {
               .getModalStyle
               (
                 modalStyle, 
-                withAnimation
+                withAnimation,
+                delay
               );
 
   // if startAnimation set to true and

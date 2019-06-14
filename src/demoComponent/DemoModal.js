@@ -71,6 +71,7 @@ const DemoModal = () => {
       
       <Modal 
         header="Modal Header"
+        className="modal-dialog-centered"
         isOpen={openBModal} 
         closeHandler={() => setOpenBModal(false)} 
         content="This is bootstrap style"
@@ -80,7 +81,7 @@ const DemoModal = () => {
       />
 
 
-      <Modal isOpen={openFCModal} closeHandler={() => setOpenFCModal(false)} className="modal-lg"
+      <Modal isOpen={openFCModal} closeHandler={() => setOpenFCModal(false)} className="modal-dialog-centered modal-lg"
         modalStyle={{wdith: '1000px;'}}
       >
         <div>

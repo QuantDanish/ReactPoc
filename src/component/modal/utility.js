@@ -1,7 +1,9 @@
 const SCROLL_FACTOR = -20;
-const BOTTOM_MARGIN = 50;
+const BOTTOM_MARGIN = 0.05;
 const getPageHeight = () => {
-  return Math.max(
+  // Most suitable value is 'documentElement.clientHeight'
+  // It gives the height of page without scrolling.
+  return Math.min(
     document.body.scrollHeight,
     document.documentElement.scrollHeight,
     document.body.offsetHeight,
@@ -38,8 +40,9 @@ const canScroll = (event) => {
           modalBoundary.top < 0 ;
   const scrollingUp = event.deltaY < 0;
 
-  console.log("scrolling up " ,scrollingUp);
+  console.log("scrolling up ? " ,scrollingUp, " scroll value" , event.deltaY);
   console.log(modalBoundary);
+  console.log("page Height ", pageHeight);
   const canScrollUp = scrollingUp && modalBoundary.top < 0;
   const canScrollDown = !scrollingUp && modalBoundary.bottom > pageHeight;
   
@@ -48,7 +51,7 @@ const canScroll = (event) => {
           canScrollUp ||
           canScrollDown
         );
-}
+} 
 
 const getNewMargin = (event, currentMargin) => {
   const modal = event.currentTarget;
@@ -62,7 +65,11 @@ const getNewMargin = (event, currentMargin) => {
     return Math.min(0 ,offset);
   }
   else {
-    const maxTopMargin = modalBoundary.height + BOTTOM_MARGIN - pageHeight;
+    const maxTopMargin = 
+      (
+        modalBoundary.height + 
+        (BOTTOM_MARGIN * pageHeight)
+      ) - pageHeight;
     
     return Math.max(-maxTopMargin, offset);
   }
@@ -73,16 +80,16 @@ export const onWheelEventHandler = (e, marginTop, setMarginTop) => {
   
   if(canScroll(e)) {
     
-    console.log("margin ", marginTop);
+    console.log("old margin ", marginTop);
     const newMargin = getNewMargin(e,marginTop);
-    console.log(newMargin);
+    console.log("new margin ", newMargin);
     setMarginTop(newMargin);
   }
 
   return;
 }
 
-export const getModalStyle = (style, withAnimation) => {
+export const getModalStyle = (style, withAnimation, delay) => {
   let modalStyle = {};
   for (const key in style) {
     if (style.hasOwnProperty(key) && !key.match(/margin/i)) {
@@ -93,7 +100,7 @@ export const getModalStyle = (style, withAnimation) => {
 
   // add transition property
   modalStyle['marginTop'] = '-100%';
-  modalStyle['transition'] = 'margin-top 0.5s ease-out';
+  modalStyle['transition'] = `margin-top ${delay}ms ease-out`;
 
   if(!withAnimation) {
     modalStyle.marginTop = '0';

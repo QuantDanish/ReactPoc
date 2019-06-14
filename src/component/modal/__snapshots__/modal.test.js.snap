@@ -3,46 +3,45 @@
 exports[`Modal behaviour when opened intially should render modal without crashing 1`] = `
 <ModalTemplate
   backdropStyle={Object {}}
-  body={
-    <ModalBody
-      hideCallback={[MockFunction]}
-    />
-  }
   className=""
   hideCallback={[MockFunction]}
   modalStyle={Object {}}
   show={true}
   startAnimation={false}
   withAnimation={true}
-/>
+>
+  <ModalBody
+    hideCallback={[MockFunction]}
+  />
+</ModalTemplate>
 `;
 
 exports[`Modal should redners without crashing when child element present. 1`] = `
 <ModalTemplate
   backdropStyle={Object {}}
-  body="Test"
   className=""
   hideCallback={[MockFunction]}
   modalStyle={Object {}}
   show={false}
   startAnimation={false}
   withAnimation={true}
-/>
+>
+  Test
+</ModalTemplate>
 `;
 
 exports[`Modal should renders without crashing when no child present 1`] = `
 <ModalTemplate
   backdropStyle={Object {}}
-  body={
-    <ModalBody
-      hideCallback={[MockFunction]}
-    />
-  }
   className=""
   hideCallback={[MockFunction]}
   modalStyle={Object {}}
   show={false}
   startAnimation={false}
   withAnimation={true}
-/>
+>
+  <ModalBody
+    hideCallback={[MockFunction]}
+  />
+</ModalTemplate>
 `;

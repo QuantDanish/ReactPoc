@@ -37,6 +37,7 @@ let defaultProps = {
 class Modal extends Component {
   constructor(props){
     super();
+    this.animationGap = 100;
     this.state = {
         show: false,
         animation: false
@@ -60,14 +61,14 @@ class Modal extends Component {
     this.setShow(true);
     setTimeout(() => {
       this.setAnimation(true);
-    }, this.props.delay);
+    }, this.animationGap);
   };
   
   closeModal() {
     this.setAnimation(false);
     setTimeout(() => {
       this.setShow(false);
-    }, this.props.delay);
+    }, this.animationGap);
   }
   
   shouldComponentUpdate(nextProps, nextState) {
@@ -100,6 +101,7 @@ class Modal extends Component {
       <ModalTemplate
         show={this.state.show}
         hideCallback= {this.props.closeHandler}
+        delay={this.props.delay}
         withAnimation={this.props.withAnimation}
         startAnimation= {this.state.animation}
         className={this.props.className}
